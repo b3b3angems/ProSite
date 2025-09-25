@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمات تصميم المواقع الذكية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1e3c72;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    direction: rtl;
+  }
+  header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    color: white;
+  }
+  header h1 { font-size: 48px; margin: 0; }
+  header p { font-size: 18px; margin-top: 10px; color: #e0f7fa; }
+
+  .pricing {
+    display: flex;
+    gap: 25px;
+    margin: 50px 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #000;
+    position: relative;
+  }
+  .card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,0,0,0.3); }
+  .card h2 { margin-bottom: 15px; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; display:flex; align-items:center; justify-content:center; gap:8px;}
+  .card p { font-size: 16px; margin: 8px 0; }
+  .price { font-size: 28px; font-weight: bold; margin: 15px 0; }
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    color: #fff;
+    background: #1e3c72;
+  }
+  .btn:hover { background: #305a99; }
+
+  /* شات بوت */
+  #chatBot {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 300px;
+    max-height: 400px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #chatHeader { background: #1e3c72; color: #fff; padding: 10px; font-weight: bold; text-align: center;}
+  #chatMessages { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+  .message { margin: 5px 0; padding: 5px 10px; border-radius: 10px; max-width: 80%; word-wrap: break-word; }
+  .user { background: #1e3c72; color: #fff; align-self: flex-end; }
+  .bot { background: #e0e0e0; color: #000; align-self: flex-start; font-style: italic; }
+  #chatInput { display: flex; }
+  #chatInput input { flex: 1; padding: 8px; border: none; outline: none; }
+  #chatInput button { padding: 8px 12px; border: none; background: #1e3c72; color: #fff; cursor: pointer; }
+  footer { margin: 50px 0 20px; font-size: 14px; color: #ccc; }
+  @media (max-width: 900px) { .pricing { flex-direction: column; align-items: center; } #chatBot { left: 50%; transform: translateX(-50%); width: 90%; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🚀 خدمات تصميم المواقع الذكية</h1>
+  <p>مواقع سريعة، عصرية واحترافية مع اقتراح ذكي للباقات</p>
+</header>
+
+<section class="pricing" id="pricing"></section>
+
+<!-- شات بوت -->
+<div id="chatBot">
+  <div id="chatHeader">مساعد الموقع 🤖</div>
+  <div id="chatMessages"></div>
+  <div id="chatInput">
+    <input type="text" id="userInput" placeholder="اكتب سؤالك هنا...">
+    <button onclick="sendMessage()">أرسل</button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 خدمات تصميم المواقع. جميع الحقوق محفوظة.</p>
+</footer>
+
+<section class="pricing" id="pricing"></section>
+
+<script>
+  const services = [
+    { name: "مبتدئ", desc: "صفحة هبوط بسيطة", features: ["تصميم أساسي", "صفحة واحدة"], price: 99, icon: "fa-file-lines" },
+    { name: "أساسي", desc: "موقع كامل 3 صفحات", features: ["تصميم عصري", "3 صفحات", "استضافة شهرية"], price: 299, icon: "fa-code" },
+    { name: "احترافي", desc: "موقع مخصص + استضافة", features: ["تصميم احترافي", "عدد صفحات غير محدود", "استضافة + دعم فني"], price: 599, icon: "fa-desktop" },
+    { name: "قاعدة بيانات + تسجيل دخول", desc: "موقع مع قاعدة بيانات + تسجيل دخول + استضافة", features: ["نظام تسجيل دخول", "قاعدة بيانات", "استضافة + دعم"], price: 1499, icon: "fa-database" },
+    { name: "متقدم", desc: "موقع متقدم + سيو + صفحات إضافية", features: ["سيو متقدم", "صفحات إضافية", "تحليل الأداء"], price: 1999, icon: "fa-chart-line" },
+    { name: "متجر إلكتروني", desc: "موقع متجر إلكتروني + بوابات دفع", features: ["بوابات دفع إلكترونية", "إدارة المنتجات", "تتبع الطلبات"], price: 2499, icon: "fa-cart-shopping" },
+    { name: "دعم وصيانة", desc: "دعم فني وصيانة شهرية", features: ["تحديثات مستمرة", "دعم فني سريع"], price: 199, icon: "fa-headset" },
+    { name: "نهائي", desc: "حل شامل + سيو + دعم كامل", features: ["كل الخدمات السابقة", "تحسين الأداء", "دعم كامل"], price: 3499, icon: "fa-crown" }
+  ];
+
+  const container = document.getElementById('pricing');
+  services.forEach(service => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <h2><i class="fa-solid ${service.icon}"></i> ${service.name}</h2>
+      <p>${service.desc}</p>
+      <ul>
+        ${service.features.map(f => `<li>${f}</li>`).join('')}
+      </ul>
+      <p class="price">${service.price} ريال</p>
+      <a class="btn" href="https://wa.me/966530972050">اطلب الآن</a>
+      <a class="btn" href="https://wa.me/966530972050">الدعم</a>
+    `;
+    container.appendChild(card);
+  });
+
+  // شات بوت يرشح الباقات حسب النص
+  const chatMessages = document.getElementById('chatMessages');
+  const botResponses = {
+    "باقة": services.map(s => `${s.name}: ${s.desc} بسعر ${s.price} ريال.`),
+    "سعر": ["يمكنك الاطلاع على كل الأسعار في البطاقات أعلاه."],
+    "دعم": ["اضغط على زر 'الدعم' لأي باقة للتواصل."],
+    "رقم": ["رقم التواصل: 0530972050"],
+    "مرحبا": ["أهلا بك! 😊", "مرحبا! 🌟"],
+    "السلام عليكم": ["وعليكم السلام 🌹", "وعليكم السلام ورحمة الله 🌟"],
+    "كيفك": ["تمام والحمد لله 🌟", "بخير، كيف حالك؟ 😊"],
+    "شكرا": ["العفو 🌹", "على الرحب والسعة 😄"]
+  };
+
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const text = input.value.trim();
+    if(!text) return;
+    appendMessage(text, 'user');
+    input.value = '';
+
+    const reply = getBotReply(text);
+    typeBotMessage(reply);
+  }
+
+  function appendMessage(text, sender){
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'message ' + sender;
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function typeBotMessage(text){
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'message bot';
+    chatMessages.appendChild(msgDiv);
+    let i=0;
+    function type(){
+      if(i<text.length){
+        msgDiv.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 30);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+    type();
+  }
+
+  function getBotReply(input){
+    input = input.toLowerCase();
+    for(const key in botResponses){
+      if(input.includes(key)){
+        const options = botResponses[key];
+        return options[Math.floor(Math.random()*options.length)];
+      }
+    }
+    return "مرحباً! أستطيع مساعدتك في اختيار الباقة المناسبة أو معرفة الأسعار والدعم.";
+  }
+
+  document.getElementById('userInput').addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      sendMessage();
+    }
+  });
+</script>
+</body>
+</html>
