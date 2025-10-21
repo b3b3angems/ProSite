@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ProSite — القوالب</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<style>
+/* اختصار: استعمل نفس متغيرات الألوان من index */
+:root{--bg1:#0b0b0b;--bg2:#1b1b1b;--card:#141414;--accent1:#9a9a9a;--green1:#25D366;--green2:#128C7E}
+*{box-sizing:border-box}body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#eee;direction:rtl}
+.container{max-width:1200px;margin:0 auto;padding:28px}
+.header{display:flex;justify-content:space-between;align-items:center}
+.header a{color:#cfcfcf;text-decoration:none;margin-left:10px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:28px}
+.card{background:linear-gradient(145deg,#0f0f0f,#1a1a1a);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.card img{width:100%;height:200px;object-fit:cover;border-radius:8px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.btn{padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;color:#000;background:linear-gradient(90deg,#7f7f7f,#e8e8e8)}
+.price{font-weight:800;color:#ddd}
+footer{margin-top:40px;text-align:center;color:#999;padding:20px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div style="font-weight:800;font-size:20px">قوالب جاهزة</div>
+    <div><a href="index.html">الرئيسية</a> <a href="contact.html">تواصل</a></div>
+  </div>
+
+  <div class="products-grid">
+    <!-- كرر البطاقات حسب حاجتك -->
+    <div class="card">
+      <img src="images/photo1.jpg" alt="">
+      <h3 style="margin-top:8px">قالب سريع A</h3>
+      <p style="color:var(--accent1)">قابل للتعديل، مناسب للمنتجات والخدمات.</p>
+      <div class="meta"><div class="price">99 ر.س</div><a class="btn" href="https://forms.gle/Md5Vvh7LimeVfj5x5">اشتر الآن</a></div>
+    </div>
+
+    <div class="card">
+      <img src="images/photo2.jpg" alt="">
+      <h3 style="margin-top:8px">قالب متجر B</h3>
+      <p style="color:var(--accent1)">متجر إلكتروني أساسي مع صفحة دفع.</p>
+      <div class="meta"><div class="price">299 ر.س</div><a class="btn" href="https://forms.gle/Md5Vvh7LimeVfj5x5">اشتر الآن</a></div>
+    </div>
+
+    <div class="card">
+      <img src="images/photo3.jpg" alt="">
+      <h3 style="margin-top:8px">قالب أعمال C</h3>
+      <p style="color:var(--accent1)">مناسب لشركات صغيرة وصفحات داخلية.</p>
+      <div class="meta"><div class="price">599 ر.س</div><a class="btn" href="https://forms.gle/Md5Vvh7LimeVfj5x5">اشتر الآن</a></div>
+    </div>
+
+    <!-- أضف المزيد حسب الحاجة -->
+  </div>
+
+  <footer>© 2025 ProSite</footer>
+</div>
+</body>
+</html>
